@@ -10,6 +10,7 @@ if (isset($_POST['btn'])) {
     $sql->execute();
 
     $res = $sql->get_result()->fetch_assoc();
+    $sql->close();
     if (password_verify($password, $res['contraseña'])) {
         session_start();
         $_SESSION['usuario'] = $res['nombre'];

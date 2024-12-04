@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php
-session_start();
-if (isset($_SESSION['usuario'])) {
-    header("Location: ./sistema/inicio.php");
-    exit;
-}
-?>
+<?php require "./validar_sesion.php"; ?>
 
 <head>
     <meta charset="UTF-8">

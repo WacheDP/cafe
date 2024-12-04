@@ -11,10 +11,7 @@ if (isset($_POST['btn'])) {
 	$sql->bind_param("ssss", $rol, $nombreusuario, $password, $correo);
 	$sql->execute();
 	$sql->close();
-
-	header("Location: ../sistema/registro_admin.php");
-	exit;
-} else {
-	header("Location: ../sistema/registro_admin.php");
-	exit;
 };
+
+header("Location: ../sistema/registro_admin.php");
+exit;

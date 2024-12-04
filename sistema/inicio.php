@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php
-session_start();
-if (empty($_SESSION['usuario'])) {
-    header("Location: ../login.php");
-    exit;
-}
-?>
+<?php require "./validar_sesion.php"; ?>
 
 <head>
     <meta charset="UTF-8">
