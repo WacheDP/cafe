@@ -4,6 +4,7 @@ function Cargar_Opciones()
     require "../php/base_datos.php";
 
     $html = '<li class="nav-item"><a class="nav-link" href="./inicio.php">Home</a></li>';
+    $html .= '<li class="nav-item"><a class="nav-link" href="./sucursal.php">Sucursales</a></li>';
 
     $sql = $database->prepare('SELECT r.permisos FROM roles AS r, usuarios AS u WHERE u.rol = r.id AND u.nombre = ?');
     $sql->bind_param("s", $_SESSION['usuario']);
@@ -15,8 +16,12 @@ function Cargar_Opciones()
     $_SESSION['nivelseguridad'] = $json;
 
     if (json_last_error() == JSON_ERROR_NONE) {
-        if ($json['sucursal'] != "no") {
-            $html .= '<li class="nav-item"><a class="nav-link" href="./sucursal.php">Sucursales</a></li>';
+        if ($json['almacen'] == "si") {
+            $html .= '<li class="nav-item"><a class="nav-link" href="./almacen.php">Almacen</a></li>';
+        }
+
+        if ($json['admin'] == "si") {
+            $html .= '<li class="nav-item"><a class="nav-link" href="./registro_admin.php">Registro Admin</a></li>';
         };
     } else {
         echo "Revisar los permisos";

@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php
-session_start();
-if (empty($_SESSION['usuario'])) {
-    header("Location: ../login.php");
-    exit;
-}
-?>
+<?php require "./validar_sesion.php"; ?>
 
 <head>
     <meta charset="UTF-8">
@@ -23,6 +17,8 @@ if (empty($_SESSION['usuario'])) {
 </head>
 
 <body>
+    <?php require "./navbar.php"; ?>
+
     <div class="card caja-formulario border-dark">
         <h5 class="card-header bg-dark text-white">Registro de Administradores</h5>
 
@@ -31,21 +27,21 @@ if (empty($_SESSION['usuario'])) {
                 <div class="form-group row caja-input">
                     <label for="user" class="col-sm-2 col-form-label">Nombre de Usuario</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="user" name="user" placeholder="user21">
+                        <input type="text" class="form-control" id="user" name="user" placeholder="user21" required maxlength="20">
                     </div>
                 </div>
 
                 <div class="form-group row caja-input">
                     <label for="email" class="col-sm-2 col-form-label">Correo Electrónico</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com" required maxlength="100">
                     </div>
                 </div>
 
                 <div class="form-group row caja-input">
                     <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
                     </div>
                 </div>
 
