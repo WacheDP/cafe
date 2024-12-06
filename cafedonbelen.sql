@@ -3,36 +3,46 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2024 a las 19:29:15
+-- Tiempo de generación: 06-12-2024 a las 06:29:04
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
-;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
-;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
-;
-/*!40101 SET NAMES utf8mb4 */
-;
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Base de datos: `cafedonbelen`
 --
 
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `activos`
 --
 
 CREATE TABLE `activos` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
-  `objeto` varchar(30) NOT NULL,
-  `estado` varchar(15) NOT NULL DEFAULT 'En buen estado',
-  `precio_unidad` float NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+  `objeto` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `activos`
+--
+
+INSERT INTO `activos` (`id`, `objeto`) VALUES
+('078da71b-b36a-11ef-a537-84a93ea1a4c5', 'adjcjsdncijwndjs'),
+('9c642951-b364-11ef-a537-84a93ea1a4c5', 'Pala'),
+('c0a89c60-b366-11ef-a537-84a93ea1a4c5', 'Desbabadora');
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `almacenes`
 --
@@ -42,8 +52,18 @@ CREATE TABLE `almacenes` (
   `sucursal` varchar(36) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `estado` varchar(15) NOT NULL DEFAULT 'En buen estado'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `almacenes`
+--
+
+INSERT INTO `almacenes` (`id`, `sucursal`, `direccion`, `estado`) VALUES
+('51583931-b332-11ef-a537-84a93ea1a4c5', '757e4499-b27c-11ef-a537-84a93ea1a4c5', 'japon', 'En buen estado'),
+('c4a1803a-b331-11ef-a537-84a93ea1a4c5', '757e4499-b27c-11ef-a537-84a93ea1a4c5', 'probando', 'Deshabilitado');
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `almacen_activos`
 --
@@ -52,10 +72,22 @@ CREATE TABLE `almacen_activos` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
   `objeto` varchar(36) NOT NULL,
   `almacen` varchar(36) NOT NULL,
+  `costo_unidad` float NOT NULL DEFAULT 0,
   `cantidad` int(11) NOT NULL,
-  `fecha_adquisicion` date NOT NULL DEFAULT curdate()
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+  `fecha_adquisicion` date NOT NULL DEFAULT curdate(),
+  `estado` varchar(15) NOT NULL DEFAULT 'En buen estado'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `almacen_activos`
+--
+
+INSERT INTO `almacen_activos` (`id`, `objeto`, `almacen`, `costo_unidad`, `cantidad`, `fecha_adquisicion`, `estado`) VALUES
+('7de52237-b366-11ef-a537-84a93ea1a4c5', '9c642951-b364-11ef-a537-84a93ea1a4c5', '51583931-b332-11ef-a537-84a93ea1a4c5', 20.5, 4, '2024-12-05', 'En buen estado'),
+('d2b8f5c5-b366-11ef-a537-84a93ea1a4c5', 'c0a89c60-b366-11ef-a537-84a93ea1a4c5', '51583931-b332-11ef-a537-84a93ea1a4c5', 200.5, 6, '2024-12-05', 'En buen estado');
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `almacen_mercancia`
 --
@@ -65,10 +97,21 @@ CREATE TABLE `almacen_mercancia` (
   `mercancia` varchar(36) NOT NULL,
   `almacen` varchar(36) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `fecha_adquisicion` date NOT NULL DEFAULT curdate(),
-  `monto` float NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+  `precio_unidad` float NOT NULL,
+  `condicion` varchar(15) NOT NULL,
+  `estado` varchar(15) NOT NULL DEFAULT 'En buen estado',
+  `fecha_adquisicion` date NOT NULL DEFAULT curdate()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `almacen_mercancia`
+--
+
+INSERT INTO `almacen_mercancia` (`id`, `mercancia`, `almacen`, `cantidad`, `precio_unidad`, `condicion`, `estado`, `fecha_adquisicion`) VALUES
+('42a86b6f-b369-11ef-a537-84a93ea1a4c5', '2d992cd7-b368-11ef-a537-84a93ea1a4c5', 'c4a1803a-b331-11ef-a537-84a93ea1a4c5', 300, 12.5, '', 'En mal estado', '2024-12-05');
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `compañias`
 --
@@ -77,8 +120,10 @@ CREATE TABLE `compañias` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
   `usuario` varchar(36) NOT NULL,
   `contrato` varchar(36) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `contratos`
 --
@@ -89,8 +134,10 @@ CREATE TABLE `contratos` (
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
   `estado` varchar(15) NOT NULL DEFAULT 'Vigente'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `cosecha_empleado`
 --
@@ -100,8 +147,10 @@ CREATE TABLE `cosecha_empleado` (
   `trabajo` varchar(36) NOT NULL,
   `empleado` varchar(36) NOT NULL,
   `numero_sacos` float NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `detalle_mantenimiento`
 --
@@ -110,8 +159,10 @@ CREATE TABLE `detalle_mantenimiento` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
   `trabajo` varchar(36) NOT NULL,
   `objeto` varchar(36) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `detalle_pedido`
 --
@@ -121,8 +172,10 @@ CREATE TABLE `detalle_pedido` (
   `pedido` varchar(36) NOT NULL,
   `cantidad` int(11) NOT NULL DEFAULT 1,
   `monto` float NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `distribuidores`
 --
@@ -132,8 +185,10 @@ CREATE TABLE `distribuidores` (
   `empleado` varchar(36) NOT NULL,
   `usuario` varchar(36) NOT NULL,
   `comision` float NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `empleados`
 --
@@ -146,8 +201,10 @@ CREATE TABLE `empleados` (
   `nombre` varchar(12) NOT NULL,
   `apellido` varchar(12) NOT NULL,
   `estado` varchar(15) NOT NULL DEFAULT 'Contratado'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `mantenimiento_empleado`
 --
@@ -156,8 +213,10 @@ CREATE TABLE `mantenimiento_empleado` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
   `trabajo` varchar(36) NOT NULL,
   `empleado` varchar(36) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `mercancias`
 --
@@ -165,11 +224,20 @@ CREATE TABLE `mantenimiento_empleado` (
 CREATE TABLE `mercancias` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
   `producto` varchar(30) NOT NULL,
-  `estado` varchar(15) NOT NULL DEFAULT 'En buen estado',
-  `condicion` varchar(15) NOT NULL,
-  `precio_unidad` float NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+  `condiciones` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`condiciones`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `mercancias`
+--
+
+INSERT INTO `mercancias` (`id`, `producto`, `condiciones`) VALUES
+('2d992cd7-b368-11ef-a537-84a93ea1a4c5', 'Café', NULL),
+('37c67acb-b368-11ef-a537-84a93ea1a4c5', 'Guineos', NULL),
+('40213434-b368-11ef-a537-84a93ea1a4c5', 'Limones', NULL);
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `pagos`
 --
@@ -179,8 +247,10 @@ CREATE TABLE `pagos` (
   `empleado` varchar(36) NOT NULL,
   `sueldo` float NOT NULL,
   `estado` varchar(15) NOT NULL DEFAULT 'Por pagar'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `pedidos`
 --
@@ -193,8 +263,10 @@ CREATE TABLE `pedidos` (
   `fecha_pedido` date NOT NULL DEFAULT curdate(),
   `monto` float NOT NULL,
   `estado` varchar(15) NOT NULL DEFAULT 'Pendiente'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `roles`
 --
@@ -203,28 +275,19 @@ CREATE TABLE `roles` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
   `rol` varchar(15) NOT NULL,
   `permisos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`permisos`))
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `roles`
 --
 
-INSERT INTO `roles` (`id`, `rol`, `permisos`)
-VALUES (
-    '92b84cff-b254-11ef-96b5-84a93ea1a4c5',
-    'Distribuidor',
-    NULL
-  ),
-  (
-    'b7ce58d1-b19c-11ef-96b5-84a93ea1a4c5',
-    'Administrador',
-    NULL
-  ),
-  (
-    'b7d0736c-b19c-11ef-96b5-84a93ea1a4c5',
-    'Cliente',
-    NULL
-  );
+INSERT INTO `roles` (`id`, `rol`, `permisos`) VALUES
+('92b84cff-b254-11ef-96b5-84a93ea1a4c5', 'Distribuidor', '{\"sucursal\": \"ver\", \"admin\": \"no\", \"almacen\": \"no\"}'),
+('b7ce58d1-b19c-11ef-96b5-84a93ea1a4c5', 'Administrador', '{\"sucursal\": \"si\", \"admin\": \"si\", \"almacen\": \"si\"}'),
+('b7d0736c-b19c-11ef-96b5-84a93ea1a4c5', 'Cliente', '{\"sucursal\": \"ver\", \"admin\": \"no\", \"almacen\": \"no\"}');
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `sucursales`
 --
@@ -232,8 +295,18 @@ VALUES (
 CREATE TABLE `sucursales` (
   `id` varchar(36) NOT NULL DEFAULT uuid(),
   `direccion` varchar(100) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `sucursales`
+--
+
+INSERT INTO `sucursales` (`id`, `direccion`) VALUES
+('757e4499-b27c-11ef-a537-84a93ea1a4c5', 'jajajajaj'),
+('7ccb1a40-b38b-11ef-a537-84a93ea1a4c5', 'pupupupuu\r\n');
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `trabajos`
 --
@@ -243,8 +316,10 @@ CREATE TABLE `trabajos` (
   `fecha_trabajo` date NOT NULL DEFAULT curdate(),
   `estado` varchar(15) NOT NULL DEFAULT 'En Proceso',
   `tipo` varchar(12) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
@@ -257,39 +332,18 @@ CREATE TABLE `usuarios` (
   `correo` varchar(100) NOT NULL,
   `avatar` varchar(50) NOT NULL DEFAULT 'STAND.webp',
   `estado` varchar(15) NOT NULL DEFAULT 'Habilitado'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (
-    `id`,
-    `rol`,
-    `nombre`,
-    `contraseña`,
-    `correo`,
-    `avatar`,
-    `estado`
-  )
-VALUES (
-    '01204c2a-b19e-11ef-96b5-84a93ea1a4c5',
-    'b7ce58d1-b19c-11ef-96b5-84a93ea1a4c5',
-    'DavidP',
-    '$2y$10$StSylAhzPaCxlVqO8R8l6..0T4XfpHSMtIHrS6FG9U8nxAyFZiqku',
-    'davidxparra0608@gmail.com',
-    'STAND.webp',
-    'Habilitado'
-  ),
-  (
-    'dffefe2e-b19d-11ef-96b5-84a93ea1a4c5',
-    'b7ce58d1-b19c-11ef-96b5-84a93ea1a4c5',
-    'WacheDP',
-    '$2y$10$7XA/tb1kljcNxuLGTj0yuOp1dZSfum.VwlhEaHpkI3pDJuX/FubaG',
-    'wacheparra21@gmail.com',
-    'STAND.webp',
-    'Habilitado'
-  );
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `contraseña`, `correo`, `avatar`, `estado`) VALUES
+('01204c2a-b19e-11ef-96b5-84a93ea1a4c5', 'b7ce58d1-b19c-11ef-96b5-84a93ea1a4c5', 'DavidP', '$2y$10$StSylAhzPaCxlVqO8R8l6..0T4XfpHSMtIHrS6FG9U8nxAyFZiqku', 'davidxparra0608@gmail.com', 'STAND.webp', 'Habilitado'),
+('dffefe2e-b19d-11ef-96b5-84a93ea1a4c5', 'b7ce58d1-b19c-11ef-96b5-84a93ea1a4c5', 'WacheDP', '$2y$10$7XA/tb1kljcNxuLGTj0yuOp1dZSfum.VwlhEaHpkI3pDJuX/FubaG', 'wacheparra21@gmail.com', 'STAND.webp', 'Habilitado');
+
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `ventas`
 --
@@ -299,7 +353,8 @@ CREATE TABLE `ventas` (
   `pedido` varchar(36) NOT NULL,
   `fecha_compra` date NOT NULL,
   `monto` float NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -308,127 +363,147 @@ CREATE TABLE `ventas` (
 -- Indices de la tabla `activos`
 --
 ALTER TABLE `activos`
-ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
 --
 -- Indices de la tabla `almacenes`
 --
 ALTER TABLE `almacenes`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `sucursal` (`sucursal`);
+
 --
 -- Indices de la tabla `almacen_activos`
 --
 ALTER TABLE `almacen_activos`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `objeto` (`objeto`),
   ADD KEY `almacen` (`almacen`);
+
 --
 -- Indices de la tabla `almacen_mercancia`
 --
 ALTER TABLE `almacen_mercancia`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `mercancia` (`mercancia`),
   ADD KEY `almacen` (`almacen`);
+
 --
 -- Indices de la tabla `compañias`
 --
 ALTER TABLE `compañias`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `usuario` (`usuario`),
   ADD KEY `contrato` (`contrato`);
+
 --
 -- Indices de la tabla `contratos`
 --
 ALTER TABLE `contratos`
-ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
 --
 -- Indices de la tabla `cosecha_empleado`
 --
 ALTER TABLE `cosecha_empleado`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `trabajo` (`trabajo`),
   ADD KEY `empleado` (`empleado`);
+
 --
 -- Indices de la tabla `detalle_mantenimiento`
 --
 ALTER TABLE `detalle_mantenimiento`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `objeto` (`objeto`),
   ADD KEY `trabajo` (`trabajo`);
+
 --
 -- Indices de la tabla `detalle_pedido`
 --
 ALTER TABLE `detalle_pedido`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `pedido` (`pedido`);
+
 --
 -- Indices de la tabla `distribuidores`
 --
 ALTER TABLE `distribuidores`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `empleado` (`empleado`),
   ADD KEY `usuario` (`usuario`);
+
 --
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `cedula` (`cedula`);
+
 --
 -- Indices de la tabla `mantenimiento_empleado`
 --
 ALTER TABLE `mantenimiento_empleado`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `trabajo` (`trabajo`),
   ADD KEY `empleado` (`empleado`);
+
 --
 -- Indices de la tabla `mercancias`
 --
 ALTER TABLE `mercancias`
-ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
 --
 -- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `empleado` (`empleado`);
+
 --
 -- Indices de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `cliente` (`cliente`),
   ADD KEY `distribuidor` (`distribuidor`);
+
 --
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rol` (`rol`);
+
 --
 -- Indices de la tabla `sucursales`
 --
 ALTER TABLE `sucursales`
-ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
 --
 -- Indices de la tabla `trabajos`
 --
 ALTER TABLE `trabajos`
-ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nombre` (`nombre`),
   ADD UNIQUE KEY `correo` (`correo`),
   ADD KEY `rol` (`rol`);
+
 --
 -- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `pedido` (`pedido`);
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -437,79 +512,89 @@ ADD PRIMARY KEY (`id`),
 -- Filtros para la tabla `almacenes`
 --
 ALTER TABLE `almacenes`
-ADD CONSTRAINT `almacenes_ibfk_1` FOREIGN KEY (`sucursal`) REFERENCES `sucursales` (`id`);
+  ADD CONSTRAINT `almacenes_ibfk_1` FOREIGN KEY (`sucursal`) REFERENCES `sucursales` (`id`);
+
 --
 -- Filtros para la tabla `almacen_activos`
 --
 ALTER TABLE `almacen_activos`
-ADD CONSTRAINT `almacen_activos_ibfk_1` FOREIGN KEY (`objeto`) REFERENCES `activos` (`id`),
+  ADD CONSTRAINT `almacen_activos_ibfk_1` FOREIGN KEY (`objeto`) REFERENCES `activos` (`id`),
   ADD CONSTRAINT `almacen_activos_ibfk_2` FOREIGN KEY (`almacen`) REFERENCES `almacenes` (`id`);
+
 --
 -- Filtros para la tabla `almacen_mercancia`
 --
 ALTER TABLE `almacen_mercancia`
-ADD CONSTRAINT `almacen_mercancia_ibfk_1` FOREIGN KEY (`mercancia`) REFERENCES `mercancias` (`id`),
+  ADD CONSTRAINT `almacen_mercancia_ibfk_1` FOREIGN KEY (`mercancia`) REFERENCES `mercancias` (`id`),
   ADD CONSTRAINT `almacen_mercancia_ibfk_2` FOREIGN KEY (`almacen`) REFERENCES `almacenes` (`id`);
+
 --
 -- Filtros para la tabla `compañias`
 --
 ALTER TABLE `compañias`
-ADD CONSTRAINT `compañias_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `compañias_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `compañias_ibfk_2` FOREIGN KEY (`contrato`) REFERENCES `contratos` (`id`);
+
 --
 -- Filtros para la tabla `cosecha_empleado`
 --
 ALTER TABLE `cosecha_empleado`
-ADD CONSTRAINT `cosecha_empleado_ibfk_1` FOREIGN KEY (`trabajo`) REFERENCES `trabajos` (`id`),
+  ADD CONSTRAINT `cosecha_empleado_ibfk_1` FOREIGN KEY (`trabajo`) REFERENCES `trabajos` (`id`),
   ADD CONSTRAINT `cosecha_empleado_ibfk_2` FOREIGN KEY (`empleado`) REFERENCES `empleados` (`id`);
+
 --
 -- Filtros para la tabla `detalle_mantenimiento`
 --
 ALTER TABLE `detalle_mantenimiento`
-ADD CONSTRAINT `detalle_mantenimiento_ibfk_1` FOREIGN KEY (`objeto`) REFERENCES `activos` (`id`),
+  ADD CONSTRAINT `detalle_mantenimiento_ibfk_1` FOREIGN KEY (`objeto`) REFERENCES `activos` (`id`),
   ADD CONSTRAINT `detalle_mantenimiento_ibfk_2` FOREIGN KEY (`trabajo`) REFERENCES `trabajos` (`id`);
+
 --
 -- Filtros para la tabla `detalle_pedido`
 --
 ALTER TABLE `detalle_pedido`
-ADD CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedido`) REFERENCES `pedidos` (`id`);
+  ADD CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedido`) REFERENCES `pedidos` (`id`);
+
 --
 -- Filtros para la tabla `distribuidores`
 --
 ALTER TABLE `distribuidores`
-ADD CONSTRAINT `distribuidores_ibfk_1` FOREIGN KEY (`empleado`) REFERENCES `empleados` (`id`),
+  ADD CONSTRAINT `distribuidores_ibfk_1` FOREIGN KEY (`empleado`) REFERENCES `empleados` (`id`),
   ADD CONSTRAINT `distribuidores_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`);
+
 --
 -- Filtros para la tabla `mantenimiento_empleado`
 --
 ALTER TABLE `mantenimiento_empleado`
-ADD CONSTRAINT `mantenimiento_empleado_ibfk_1` FOREIGN KEY (`trabajo`) REFERENCES `trabajos` (`id`),
+  ADD CONSTRAINT `mantenimiento_empleado_ibfk_1` FOREIGN KEY (`trabajo`) REFERENCES `trabajos` (`id`),
   ADD CONSTRAINT `mantenimiento_empleado_ibfk_2` FOREIGN KEY (`empleado`) REFERENCES `empleados` (`id`);
+
 --
 -- Filtros para la tabla `pagos`
 --
 ALTER TABLE `pagos`
-ADD CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`empleado`) REFERENCES `empleados` (`id`);
+  ADD CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`empleado`) REFERENCES `empleados` (`id`);
+
 --
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`cliente`) REFERENCES `compañias` (`id`),
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`cliente`) REFERENCES `compañias` (`id`),
   ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`distribuidor`) REFERENCES `distribuidores` (`id`);
+
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `roles` (`id`);
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `roles` (`id`);
+
 --
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
-ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`pedido`) REFERENCES `pedidos` (`id`);
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`pedido`) REFERENCES `pedidos` (`id`);
 COMMIT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
-;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
-;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
-;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

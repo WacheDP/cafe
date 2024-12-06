@@ -21,6 +21,8 @@ $id = $_GET['id'];
 </head>
 
 <body>
+    <?php require "../navbar.php"; ?>
+
     <div class="card caja-formulario border-dark">
         <h5 class="card-header bg-dark text-white"><?php echo 'Sucursal ' . $id; ?></h5>
 

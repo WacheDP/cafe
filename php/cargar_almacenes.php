@@ -32,7 +32,7 @@ $num = 1;
 while ($almacen = $almacenes->fetch_assoc()) {
     $html .= '<tr><th scope="row">' . $num . '</th><td>' . $almacen['direccion'] . '</td>';
     $html .= '<td>' . $almacen['estado'] . '</td>';
-    $html .= '<td><a href="">';
+    $html .= '<td><a href="./crud/Almacen/inventario.php?sebo=1&id=' . $almacen['id'] . '">';
     $html .= '<button type="button" class="btn btn-outline-primary">';
     $html .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">';
     $html .= '<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>';

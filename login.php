@@ -25,7 +25,7 @@
                 <div class="form-group row caja-input">
                     <label for="ID" class="col-sm-2 col-form-label">Identificación</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="ID" name="ID" placeholder="user21 - ejemplo@gmail.com">
+                        <input type="text" class="form-control" id="ID" name="ID" placeholder="user21 - ejemplo@gmail.com" required>
                         <small id="help" class="form-text text-muted">* para la identificación puedes utilizar tu nombre de usuario o tu correo electrónico *</small>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="form-group row caja-input">
                     <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
                     </div>
                 </div>
 
