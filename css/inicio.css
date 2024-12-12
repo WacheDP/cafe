@@ -1,0 +1,19 @@
+main {
+    background-image: url('../recursos/fo.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center; /* Centra horizontalmente el texto */
+    height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+    margin: 0; /* Elimina el margen por defecto */
+    display: flex; /* Habilita Flexbox */
+    align-items: center; /* Centra verticalmente */
+}
+
+h1 {
+    margin: 0; /* Elimina el margen por defecto del h1 */
+    position: absolute;
+    top: 45%;
+    left: 35%;
+}
