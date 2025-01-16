@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="shortcut icon" href="./recursos/taza_cafe.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -14,24 +15,23 @@
 <body>
     <!-- Encabezado -->
     <header>
-
         <div class="header">
             <img src="./recursos/Logo.png" class="logo" alt="Logo">
 
             <div class="inicio">
-                <h5 class="card-title" style="font-size: 14px;">Inicio De Sesion</h5> <!-- Texto reducido -->
+                <h5 class="card-title" style="font-size: 14px;">Inicio De Sesion</h5>
                 <form action="./php/procesar_login.php" method="post">
-                    <div class="form-group row caja-input">
-                        <label for="ID" class="col-sm-4 col-form-label">Usuario</label> <!-- Texto reducido -->
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="ID" name="ID" placeholder="user21" style="font-size: 12px; height: 25px;"> <!-- Ajusta la altura del input -->
+                    <div class="form-group row">
+                        <label for="ID" class="col-sm-4 col-form-label">Identificación</label>
+                        <div class="col-sm-8 nivel">
+                            <input type="text" class="form-control" id="ID" name="ID" placeholder="user21 - ejemplo@gmail.com" style="font-size: 12px; height: 25px;"> <!-- Ajusta la altura del input -->
                             <small id="help" class="form-text text-muted" style="font-size: 10px;">* para la identificación puedes utilizar tu nombre de usuario o tu correo electrónico *</small> <!-- Texto reducido -->
                         </div>
                     </div>
 
-                    <div class="form-group row caja-input">
-                        <label for="password" class="col-sm-4 col-form-label">Contraseña</label> <!-- Texto reducido -->
-                        <div class="col-sm-8">
+                    <div class="form-group row ">
+                        <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
+                        <div class="col-sm-8 nivel">
                             <input type="password" class="form-control" id="password" name="password" placeholder="****" style="font-size: 12px; height: 25px;"> <!-- Ajusta la altura del input -->
                         </div>
                     </div>
@@ -67,26 +67,22 @@
             <div class="carousel-item active" data-bs-interval="10000">
                 <img src="./recursos/img/img1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>en un pequeño pueblo del municipio lobatera, llamado borota</h5>
-                    <p>se encuentra la finca de café "Don Belén". Esta finca no es solo un lugar de producción, sino un homenaje a Don Belén, el abuelo de la matriarca de la familia, quien dedicó su vida a trabajar esta tierra con amor y dedicación..</p>
+                    <h5>En un pequeño pueblo del municipio lobatera, llamado borota</h5>
+                    <p>Se encuentra la finca de café "Don Belén". Esta finca no es solo un lugar de producción, sino un homenaje a Don Belén, el abuelo de la matriarca de la familia, quien dedicó su vida a trabajar esta tierra con amor y dedicación..</p>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <img src="./recursos/img/img2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>La historia de la finca "Don Belén"</h5>
-                    <p>se remonta a la cuarentena de 2020, cuando la pandemia de COVID-19 azotó a Venezuela y al mundo entero. Durante este tiempo de incertidumbre, una familia compuesta por un padre, una madre y sus dos hijos decidió aprovechar el tiempo en aislamiento para restaurar y revitalizar la finca que alguna vez fue un basurero, pero que en sus días de gloria fue el orgullo de Don Belén.
-
-                        Con determinación y un profundo sentido de honor hacia su ancestro, la familia se mudó a la finca. Día tras día, trabajaron incansablemente para recuperar el terreno, limpiando y preparando la tierra para el cultivo de café. A través de arduo trabajo y sacrificio, lograron transformar el lugar en un próspero campo de café, reflejando el espíritu laborioso de Don Belén..</p>
+                    <p>Se remonta a la cuarentena de 2020, cuando la pandemia de COVID-19 azotó a Venezuela y al mundo entero. Durante este tiempo de incertidumbre, una familia compuesta por un padre, una madre y sus dos hijos decidió aprovechar el tiempo en aislamiento para restaurar y revitalizar la finca que alguna vez fue un basurero, pero que en sus días de gloria fue el orgullo de Don Belén. <br><br> Con determinación y un profundo sentido de honor hacia su ancestro, la familia se mudó a la finca. Día tras día, trabajaron incansablemente para recuperar el terreno, limpiando y preparando la tierra para el cultivo de café. A través de arduo trabajo y sacrificio, lograron transformar el lugar en un próspero campo de café, reflejando el espíritu laborioso de Don Belén...</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="./recursos/img/img3.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>El renacimiento de la finca</h5>
-                    <p>simboliza el profundo respeto y gratitud hacia las generaciones pasadas. En honor a Don Bel�n, la finca y el caf� que hoy en d�a distribuyen llevan su nombre, asegurando que su legado perdure y siga inspirando a futuras generaciones.
-
-                        La finca de caf� "Don Bel�n" es ahora un testimonio de la evoluci�n y el esfuerzo conjunto de una familia que, en medio de una pandemia global, encontr� fuerza en sus ra�ces y cre� algo hermoso y significativo. Cada grano de caf� cultivado y cada taza servida cuenta una historia de dedicaci�n, honor y evoluci�n...</p>
+                    <p>Simboliza el profundo respeto y gratitud hacia las generaciones pasadas. En honor a Don Belén, la finca y el café que hoy en día distribuyen llevan su nombre, asegurando que su legado perdure y siga inspirando a futuras generaciones. <br><br> La finca de café "Don Belén" es ahora un testimonio de la evolución y el esfuerzo conjunto de una familia que, en medio de una pandemia global, encontró fuerza en sus raíces y creó algo hermoso y significativo. Cada grano de café cultivado y cada taza servida cuenta una historia de dedicación, honor y evolución...</p>
                 </div>
             </div>
         </div>
@@ -168,6 +164,5 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 
 </html>

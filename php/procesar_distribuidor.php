@@ -1,6 +1,6 @@
 <?php
 require "./base_datos.php";
-require "./crear_contrase%C3%B1as.php";
+require "./crear_contrasenas.php";
 require "./exportar_usuarios.php";
 
 if (isset($_POST['btn'])) {
@@ -24,9 +24,11 @@ if (isset($_POST['btn'])) {
     $sql->close();
 
     $sql = $database->prepare('INSERT INTO distribuidores(empleado, usuario, comision) VALUES (?, ?, ?)');
-    $sql->bind_param("ssd", $persona, $iduser, $comision);
+    $sql->bind_param("ssd", $persona, $iduser['id'], $comision);
     $sql->execute();
     $sql->close();
+
+    exportar_usuarios($usuario, $persona, $correo, $contraseña);
 };
 
 header("Location: ../sistema/empleados.php");

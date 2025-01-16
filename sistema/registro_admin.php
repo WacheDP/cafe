@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Logo -->
+    <link rel="shortcut icon" href="../recursos/taza_cafe.png" type="image/x-icon">
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/registeradmin.css">

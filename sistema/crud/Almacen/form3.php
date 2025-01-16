@@ -110,6 +110,13 @@ $id = $_GET['id'];
                     </div>
                 </div>
 
+                <div class="form-group row caja-input">
+                    <label for="condicion" class="col-sm-2 col-form-label">Condición</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="condicion" name="condicion" maxlength="30">
+                    </div>
+                </div>
+
                 <select class="form-select caja-input" name="estado">
                     <option value="">Seleccione el estado</option>
                     <option value="En buen estado">En buen estado</option>

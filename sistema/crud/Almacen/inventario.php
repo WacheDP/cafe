@@ -146,6 +146,8 @@ $id = $_GET['id'];
 
         <div class="card-body">
             <form action="../../../php/procesar_activo.php" method="post">
+                <input type="hidden" name="almacen" value="<?php echo $id; ?>">
+
                 <div class="form-group row caja-input">
                     <label for="objeto" class="col-sm-2 col-form-label">Objeto</label>
                     <div class="col-sm-10">
@@ -167,17 +169,13 @@ $id = $_GET['id'];
 
         <div class="card-body">
             <form action="../../../php/procesar_mercancia.php" method="post">
+                <input type="hidden" name="almacen" value="<?php echo $id; ?>">
+
                 <div class="form-group row caja-input">
                     <label for="producto" class="col-sm-2 col-form-label">Producto</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="producto" name="producto" placeholder="Frutas, Cultivos, Plantaciones, etc" maxlength="30" required>
                     </div>
-                </div>
-
-                <div class="form-group caja-input">
-                    <label for="json">Establecer Condiciones</label>
-                    <textarea class="form-control" id="json" name="json" rows="3"></textarea>
-                    <small id="help" class="form-text text-muted">* puedes dejarla vacia, pero al definirlas, la primera letra debe ser mayúsculas y separadas unicamente por ,*</small>
                 </div>
 
                 <div class="form-group row">
@@ -262,9 +260,12 @@ $id = $_GET['id'];
                     ?>
                 </select>
 
-                <select id="condicion" name="condicion" class="form-select caja-input">
-                    <option value="">Seleccione la condicion del producto</option>
-                </select>
+                <div class="form-group row caja-input">
+                    <label for="condicion" class="col-sm-2 col-form-label">Condición</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="condicion" name="condicion" maxlength="30">
+                    </div>
+                </div>
 
                 <div class="form-group row caja-input">
                     <label for="costo2" class="col-sm-2 col-form-label">Costo por Unidad</label>

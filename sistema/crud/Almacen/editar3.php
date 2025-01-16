@@ -25,6 +25,13 @@ if (isset($_POST['btn'])) {
         $sql->close();
     };
 
+    if (!empty($_POST['condicion'])) {
+        $sql = $database->prepare('UPDATE almacen_mercancia SET condicion = ? WHERE id = ?');
+        $sql->bind_param("ss", $_POST['condicion'], $id);
+        $sql->execute();
+        $sql->close();
+    };
+
     if (!empty($_POST['estado'])) {
         $sql = $database->prepare('UPDATE almacen_mercancia SET estado = ? WHERE id = ?');
         $sql->bind_param("ss", $_POST['estado'], $id);

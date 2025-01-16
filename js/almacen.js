@@ -1,5 +1,5 @@
 var sucursal = document.getElementById('sucursal')
-var almacenes = document.getElementById('almacenes');
+var almacenes = document.getElementById('almacenes')
 
 sucursal.addEventListener("change", () => {
     var id = sucursal.value

@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-#boton{
+#boton {
     width: 8%;
     opacity: 0.2;
 }
@@ -28,9 +28,11 @@ header {
     position: relative;
     border-bottom: 20px solid white;
 }
+
 .header {
     position: relative;
-    padding: 10px; /* Espaciado alrededor del encabezado */
+    padding: 10px;
+    /* Espaciado alrededor del encabezado */
 }
 
 .logo {
@@ -39,7 +41,7 @@ header {
     position: absolute;
     margin: 0;
     top: -40px;
-    left: 40px;
+    left: 4%;
 }
 
 .inicio {
@@ -48,12 +50,16 @@ header {
     position: absolute;
     margin: 0;
     top: -40px;
-    left: 980px;
+    left: 75%;
 }
 
-    header h1 {
-        text-align: center;
-    }
+header h1 {
+    text-align: center;
+}
+
+.nivel{
+    margin-top: 5px;
+}
 
 nav ul {
     list-style: none;
@@ -61,14 +67,14 @@ nav ul {
     justify-content: center;
 }
 
-    nav ul li {
-        margin: 0 15px;
-    }
+nav ul li {
+    margin: 0 15px;
+}
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
 
 .hero {
     background: url('./recursos/img/hero-bg.jpg') no-repeat center center/cover;
@@ -77,9 +83,9 @@ nav ul {
     text-align: center;
 }
 
-    .hero h2 {
-        font-size: 2.5em;
-    }
+.hero h2 {
+    font-size: 2.5em;
+}
 
 .btn {
     display: inline-block;
@@ -98,8 +104,10 @@ nav ul {
 .service-item {
     margin: 20px 0;
 }
+
 .contact-form {
-    flex: 1; /* Permite que esta sección ocupe el espacio restante */
+    flex: 1;
+    /* Permite que esta secciï¿½n ocupe el espacio restante */
     padding: 40px 0;
     margin: 0 10px;
 }
@@ -113,24 +121,24 @@ nav ul {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-    .form-container h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-    .form-container label {
-        display: block;
-        font-weight: bold;
-    }
+.form-container label {
+    display: block;
+    font-weight: bold;
+}
 
-    .form-container input,
-    textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-    }
+.form-container input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
 
 .submit-button {
     padding: 10px 20px;
@@ -142,9 +150,9 @@ nav ul {
     cursor: pointer;
 }
 
-    .submit-button:hover {
-        background-color: #1ac840;
-    }
+.submit-button:hover {
+    background-color: #1ac840;
+}
 
 footer {
     background: #333;
@@ -152,33 +160,35 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+
 .card {
-    margin: 1rem 0; /* Espaciado entre tarjetas */
+    margin: 1rem 0;
+    /* Espaciado entre tarjetas */
     transition: transform 0.3s;
 }
 
-    .card:hover {
-        transform: scale(1.05);
-    }
+.card:hover {
+    transform: scale(1.05);
+}
 
-    .card img {
-        width: 100%;
-        height: auto;
-    }
+.card img {
+    width: 100%;
+    height: auto;
+}
 
-    .card h3 {
-        font-size: 1.5em;
-        margin: 10px 0;
-    }
+.card h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
 
-    .card p {
-        padding: 0 10px 10px;
-    }
+.card p {
+    padding: 0 10px 10px;
+}
 
 .container nav url li a {
     transition: all 0.5s linear;
-    }
+}
 
 .container nav url li a:hover {
-    color:deepskyblue;
+    color: deepskyblue;
 }

@@ -20,6 +20,18 @@ function Cargar_Opciones()
             $html .= '<li class="nav-item"><a class="nav-link" href="../../almacen.php">Almacen</a></li>';
         }
 
+        if ($json['contratos'] == "si") {
+            $html .= '<li class="nav-item"><a class="nav-link" href="../../contratos.php">Contratos</a></li>';
+        };
+
+        if ($json['personal'] == "si") {
+            $html .= '<li class="nav-item"><a class="nav-link" href="../../empleados.php">Empleados</a></li>';
+        };
+
+        if ($json['server'] == "si") {
+            $html .= '<li class="nav-item"><a class="nav-link" href="../../usuarios.php">Usuarios</a></li>';
+        };
+
         if ($json['admin'] == "si") {
             $html .= '<li class="nav-item"><a class="nav-link" href="../../registro_admin.php">Registro Admin</a></li>';
         };
@@ -27,7 +39,7 @@ function Cargar_Opciones()
         echo "Revisar los permisos";
     };
 
-    $html .= '<li class="nav-item"><a class="nav-link" href="../../../php/cerrar_session.php">Cerrar Sesión</a></li>';
+    $html .= '<li class="nav-item"><a class="nav-link" href="../../php/cerrar_session.php">Cerrar Sesión</a></li>';
 
     return $html;
 };

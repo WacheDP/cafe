@@ -32,6 +32,12 @@ function Cargar_Opciones()
             $html .= '<li class="nav-item"><a class="nav-link" href="./usuarios.php">Usuarios</a></li>';
         };
 
+        $html .= '<li class="nav-item"><a class="nav-link" href="./pedidos.php">Pedidos</a></li>';
+
+        if ($json['ventas'] == "si") {
+            $html .= '<li class="nav-item"><a class="nav-link" href="./ventas.php">Ventas</a></li>';
+        }
+
         if ($json['admin'] == "si") {
             $html .= '<li class="nav-item"><a class="nav-link" href="./registro_admin.php">Registro Admin</a></li>';
         };
